@@ -36,6 +36,14 @@ function App() {
         };
     }, []);
 
+    useEffect(() => {
+        const timeString = formatTime(displayTime.minutes, displayTime.seconds);
+        const phaseLabel = PHASES[phase].label;
+        
+        document.title = `PomoTask | ${timeString} - ${phaseLabel}`;
+    }, [displayTime, phase, isRunning]);
+
+
     const setTimerForPhase = (nextPhase, autoStart = false) => {
         if (!timerRef.current) {
             return;
